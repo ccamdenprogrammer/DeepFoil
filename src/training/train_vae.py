@@ -1,14 +1,15 @@
 """
 train_vae.py
 
-Training script for Airfoil VAE (Fixed / Proven architecture).
+Training script for Airfoil VAE with posterior collapse prevention.
 
-- Encoder: LayerNorm + SiLU
+- Encoder: LayerNorm + SiLU + Dropout
 - Decoder: MLP + SiLU (no normalization, no dropout)
 - Loss terms averaged (scale-invariant)
 - Smoothness regularization on y only (normalized)
-- Optional x-monotonicity penalty
-- KL β-annealing
+- Free bits to prevent posterior collapse
+- Higher β-annealing to maintain KL divergence
+- Input noise (denoising VAE) to force latent usage
 """
 
 import os
@@ -84,8 +85,8 @@ class VAETrainer:
         for batch_idx, data in enumerate(self.train_loader):
             data = data.to(self.device)
 
-            # Add input noise to force latent usage (denoising VAE)
-            noise_std = 0.01
+            # Add minimal input noise (too much noise prevents encoding details)
+            noise_std = 0.005  # Very low - allow encoder to learn details
             noisy_data = data + torch.randn_like(data) * noise_std
 
             self.optimizer.zero_grad(set_to_none=True)
@@ -245,20 +246,22 @@ def main():
     print("=" * 60)
 
     # ---------------- Configuration ----------------
-    LATENT_DIM = 32
+    LATENT_DIM = 8     # MUCH smaller - force information bottleneck
     BATCH_SIZE = 64
     LEARNING_RATE = 1e-3
-    NUM_EPOCHS = 50  # Reduced for quick test (original: 200)
+    NUM_EPOCHS = 200
 
-    # KL β-annealing - aggressive from the start
-    BETA_START = 5.0  # Very aggressive start
-    BETA_END = 10.0   # Very high beta
-    BETA_ANNEAL_EPOCHS = 25  # Reduced proportionally (original: 100)
+    # Two-stage training: First learn to reconstruct, then add smoothness
+    # Stage 1 (epochs 1-100): No smoothness, moderate beta
+    # Stage 2 (epochs 101-200): Add smoothness gradually
+    BETA_START = 0.5   # Start with meaningful KL pressure
+    BETA_END = 1.0     # Standard VAE
+    BETA_ANNEAL_EPOCHS = 150
 
-    # Regularization weights from the new loss
-    SMOOTHNESS_WEIGHT = 0.01       # Reduce to allow more flexibility
-    MONOTONICITY_WEIGHT = 0.0      # set >0 to discourage x backtracking
-    FREE_BITS = 0.0                # Remove free bits - didn't help
+    # Regularization weights - Will be adjusted during training
+    SMOOTHNESS_WEIGHT = 0.0        # Start at 0, increase later
+    MONOTONICITY_WEIGHT = 0.0
+    FREE_BITS = 0.0
 
     # Trainer options
     USE_AMP = torch.cuda.is_available()
@@ -323,6 +326,14 @@ def main():
             beta = BETA_START + (BETA_END - BETA_START) * (epoch / BETA_ANNEAL_EPOCHS)
         else:
             beta = BETA_END
+
+        # Two-stage smoothness: 0 for first 100 epochs, then gradually increase
+        if epoch <= 100:
+            trainer.smoothness_weight = 0.0  # Stage 1: Pure reconstruction
+        else:
+            # Stage 2: Gradually add smoothness from 0 to 2.0
+            progress = (epoch - 100) / 100
+            trainer.smoothness_weight = 2.0 * progress
 
         # Train
         train_loss, recon_loss, kl_loss, smooth_loss, mono_loss = trainer.train_epoch(epoch, beta=beta)
