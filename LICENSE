@@ -1,0 +1,52 @@
+MIT License
+
+Copyright (c) 2024 DeepFoil Project
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+
+DISCLAIMER FOR AERODYNAMIC APPLICATIONS:
+
+This software generates airfoil geometries using machine learning techniques.
+The generated airfoils are GEOMETRIC PROPOSALS ONLY and have NOT been validated
+for aerodynamic performance or structural integrity.
+
+CRITICAL SAFETY NOTICE:
+- DO NOT use generated airfoils in safety-critical applications without
+  thorough validation by qualified aerospace engineers
+- ALL generated designs MUST be validated using computational fluid dynamics
+  (CFD) and/or wind tunnel testing before any real-world application
+- The authors and contributors assume NO responsibility for the aerodynamic
+  performance, structural integrity, or safety of generated airfoils
+- Users are solely responsible for validating designs for their intended use
+
+This software is intended for:
+- Educational purposes
+- Preliminary design exploration
+- Research and development
+- Generating candidate geometries for further analysis
+
+This software is NOT intended for:
+- Production aircraft design (without expert validation)
+- Safety-critical applications (without thorough testing)
+- Direct manufacturing (without engineering oversight)
+- Flight-critical systems (without certification)
+
+By using this software, you acknowledge and agree to these terms.

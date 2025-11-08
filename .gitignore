@@ -1,0 +1,84 @@
+# DeepFoil Distribution .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+deepfoil_env/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+# Output directories (generated airfoils)
+deepfoil_outputs/
+examples_output/
+output/
+outputs/
+generated/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.swo
+*~
+
+# OS-specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Model checkpoints (if users train their own)
+# Note: The pre-trained model in models/airfoil_ae/ should be kept
+checkpoints/
+*.pth.tar
+
+# Data files (if users generate new datasets)
+# Note: The included airfoil_dataset.pkl should be kept
+*.pkl.tmp
+new_data/
+
+# Test files
+test_*.py
+*_test.py
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+
+# Profiling
+*.prof
+
+# Documentation builds (if users build docs locally)
+docs/_build/
