@@ -3,9 +3,6 @@ DeepFoil Quick Demo - Portfolio Demonstration
 ==============================================
 
 This script provides a fast, impressive demonstration of DeepFoil's capabilities.
-Perfect for recruiters and portfolio reviews.
-
-Runtime: ~30 seconds
 """
 
 import sys
