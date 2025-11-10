@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from latent_interpreter import LatentInterpreter
 
 def print_header():
-    """Print impressive header."""
+    """Print header."""
     print("\n" + "="*80)
     print("  ____                  _____      _ _     ___            _      _   ")
     print(" |  _ \\  ___  ___ _ __ |  ___|__  (_) |   / _ \\ _   _(_) ___| | __")
