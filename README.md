@@ -329,29 +329,6 @@ python VERIFICATION_TESTS.py
 
 ---
 
-## For Recruiters / Portfolio Review
-
-**What makes this project notable**:
-- Original research and architecture (not a tutorial project)
-- Novel solution to known problem (posterior collapse)
-- Complete system: research → implementation → testing → documentation
-- Interdisciplinary: ML + aerospace + software engineering
-
-**Skills demonstrated**:
-- Custom neural architecture design
-- Loss function engineering
-- Training strategy development
-- Software architecture and clean code
-- Testing and validation
-- Technical documentation
-
-**Quick evaluation**:
-1. Run `python QUICK_DEMO.py` (2 minutes)
-2. Browse `src/models/airfoil_ae.py` (see architecture)
-3. Review `examples/` folder (see code quality)
-
----
-
 ## System Requirements
 
 **Minimum**:
