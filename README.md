@@ -2,8 +2,6 @@
 
 Deep learning system for generating novel airfoil geometries using a deterministic autoencoder with interpretable latent space.
 
-**Key Innovation**: Solves VAE posterior collapse problem while achieving 94% dimensionality reduction (400D → 24D) and near-perfect reconstruction (MSE < 0.00001).
-
 ---
 
 ## Quick Start
