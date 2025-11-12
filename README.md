@@ -29,8 +29,8 @@ DeepFoil generates airfoil designs using a custom neural architecture that:
 **Technical Achievement**: Unlike VAE approaches that suffer from posterior collapse, this deterministic autoencoder learns the actual latent distribution from training data, avoiding common generative model pitfalls while maintaining full interpretability.
 
 ### Performance Metrics
-- **Reconstruction MSE**: 0.000004 (near-perfect)
-- **Latent Dimensions**: 24 (vs 100+ in typical VAEs)
+- **Reconstruction MSE**: 0.000004
+- **Latent Dimensions**: 24
 - **Feature Control**: ±5% thickness, ±0.5% camber accuracy
 - **Training Data**: 1,646 airfoils (UIUC database)
 - **Generation Speed**: ~50 airfoils/second on CPU
