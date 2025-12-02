@@ -236,7 +236,7 @@ deepfoil_minimal/
         └── airfoil_dataset.pkl # 1,646 airfoils (5.1 MB)
 ```
 
-**Total**: ~1,800 lines of production code
+
 
 ---
 
