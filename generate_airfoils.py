@@ -1,8 +1,5 @@
 """
 generate_airfoils.py
-
-PRODUCTION-LEVEL airfoil generator building on the working AE.
-Samples from the ACTUAL learned latent distribution, not random N(0,1).
 """
 
 import torch
@@ -16,11 +13,11 @@ from src.data.create_dataset import AirfoilDataset
 
 
 class AirfoilGenerator:
-    """Production-ready airfoil generator using trained AE."""
+
 
     def __init__(self, model_path="models/airfoil_ae/best_model.pth",
                  dataset_path="data/processed/airfoil_dataset.pkl"):
-        """Initialize generator with trained model and fit latent distribution."""
+
 
         print("Initializing Airfoil Generator...")
 
@@ -64,18 +61,7 @@ class AirfoilGenerator:
         print(f"\nGenerator ready!")
 
     def generate(self, num_samples=1, method='gmm', diversity=1.0):
-        """
-        Generate new airfoils.
 
-        Args:
-            num_samples: Number of airfoils to generate
-            method: 'gmm' (best), 'empirical' (sample from training), or 'gaussian'
-            diversity: Sampling temperature (1.0=normal, >1=more diverse, <1=safer)
-
-        Returns:
-            airfoils: (num_samples, 400) tensor
-            latent_codes: (num_samples, latent_dim) tensor
-        """
 
         if method == 'gmm':
             # Sample from fitted GMM (best quality + diversity)
@@ -108,12 +94,7 @@ class AirfoilGenerator:
         return airfoils, z_tensor
 
     def validate_airfoil(self, coords):
-        """
-        Validate airfoil quality.
 
-        Returns:
-            dict with quality metrics
-        """
         # Trailing edge closure
         te_gap = np.linalg.norm(coords[0] - coords[-1])
 
@@ -137,11 +118,7 @@ class AirfoilGenerator:
 
     def generate_batch(self, num_samples=10, method='gmm', diversity=1.0,
                       max_attempts=100, return_invalid=False):
-        """
-        Generate batch of validated airfoils.
 
-        Automatically retries invalid samples until we have enough valid ones.
-        """
         valid_airfoils = []
         valid_z = []
         invalid_count = 0
@@ -180,7 +157,6 @@ class AirfoilGenerator:
 
 
 def demonstrate_generator():
-    """Demonstrate production-ready generator."""
 
     print("=" * 70)
     print("Production Airfoil Generator Demo")
