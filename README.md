@@ -1,4 +1,4 @@
-# DeepFoil - AI-Powered Airfoil Design System
+# DeepFoil - Airfoil Design System
 
 Deep learning system for generating novel airfoil geometries using a deterministic autoencoder with interpretable latent space.
 
